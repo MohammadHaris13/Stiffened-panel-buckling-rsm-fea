@@ -1,185 +1,495 @@
-# Stiffened-Panel Buckling Optimisation (Aluminium 6061-T6)
+# Stiffened Panel Buckling Optimisation using RSM and FEA
 
-Parametric linear-buckling and response-surface optimisation of welded Aluminium 6061-T6 stiffened panels under uniform axial compression. ANSYS Mechanical 2024 R1 produces the buckling loads for a 3 × 3 × 3 full-factorial DOE; MATLAB R2026a fits response surfaces, runs ANOVA, and locates the Pareto-optimal subset.
+Parametric finite element and response surface optimisation of Aluminium 6061-T6 stiffened panels subjected to uniform axial compression.
+
+The project combines:
+
+- ANSYS Mechanical 2024 R1
+- MATLAB R2020a
+- Design of Experiments (DOE)
+- Response Surface Methodology (RSM)
+- ANOVA
+- Pareto optimisation
+
+to investigate the effect of stiffener geometry on:
+
+- Critical buckling load (\(P_{cr}\))
+- Structural mass
+- Strength-to-weight ratio (\(P_{cr}/\text{Mass}\))
 
 ---
 
-## Headline results
+# Project objectives
 
-| Metric | Value |
+- Maximise buckling resistance
+- Minimise structural mass
+- Identify Pareto-optimal designs
+- Develop surrogate predictive models
+- Reduce repeated FEA computation time
+
+---
+
+# Software used
+
+| Software | Purpose |
 |---|---|
-| Configurations studied | 27 panels (3³ full factorial) |
-| Strength-to-weight optimum | **Panel 13** &nbsp;·&nbsp; *t* = 3 mm, *h* = 35 mm, *b* = 100 mm &nbsp;·&nbsp; 94.58 kN/kg |
-| Load-maximising optimum (RSM grid) | *t* = 4.00 mm, *h* = 44.33 mm, *b* = 100 mm &nbsp;·&nbsp; *P*ᶜʳ = 754.0 kN |
-| Pareto-optimal panels | 15 of 27 |
-| Surrogate R² &nbsp;(*P*ᶜʳ / Mass / Ratio) | 0.923 / 0.9999 / 0.890 |
+| ANSYS Mechanical 2024 R1 | Linear eigenvalue buckling analysis |
+| ANSYS SpaceClaim | Parametric CAD modelling |
+| MATLAB R2020a | RSM fitting, ANOVA, optimisation |
+| Excel / CSV | DOE data handling |
 
 ---
 
-## Geometry and design space
+# Geometry description
 
-Flat skin plate 1000 mm × 600 mm with longitudinal blade stiffeners welded along the full length. Three design variables, three levels each:
+Flat aluminium plate stiffened using longitudinal blade stiffeners welded along the full length.
+
+## Base geometry
+
+| Parameter | Value |
+|---|---|
+| Plate length | 1000 mm |
+| Plate width | 600 mm |
+| Material | Aluminium 6061-T6 |
+
+---
+
+# Design variables
+
+Three geometric variables were investigated using a \(3^3\) full-factorial DOE.
 
 | Variable | Symbol | Levels |
 |---|---|---|
-| Skin thickness | *t* (mm) | 2, 3, 4 |
-| Stiffener height | *h* (mm) | 25, 35, 45 |
-| Stiffener spacing | *b* (mm) | 100, 150, 200 |
+| Skin thickness | \(t\) (mm) | 2, 3, 4 |
+| Stiffener height | \(h\) (mm) | 25, 35, 45 |
+| Stiffener spacing | \(b\) (mm) | 100, 150, 200 |
 
-Stiffener count is set by *b*: 5 stiffeners at *b* = 100, 3 at *b* = 150, 2 at *b* = 200.
+## Stiffener count
 
-<!-- Drop the CAD screenshot from ANSYS SpaceClaim here (1000 × 600 mm panel with 5 stiffeners) -->
-![CAD geometry — b = 100 mm configuration](images/geometry/cad_b100.png)
-
----
-
-## Finite-element model
-
-ANSYS Mechanical 2024 R1, four-node SHELL181 elements, midsurface shell representation, 10 mm element size selected after a five-level convergence study. Linear elastic Aluminium 6061-T6 (E = 70 GPa, ν = 0.33, ρ = 2700 kg/m³). Uniform axial compression delivered by a 1 kN reference compressive pressure on the loaded edge; eigenvalue buckling gives the load multiplier *λ*₁ and hence *P*ᶜʳ.
-
-<!-- Drop the meshed-model screenshot here -->
-![Meshed FE model](images/mesh/mesh_10mm.png)
-
-### Mesh convergence
-
-Convergence performed on Panel 14 (central design point: *t* = 3 mm, *h* = 35 mm, *b* = 150 mm). Five element sizes tested: 20, 15, 10, 7, 5 mm.
-
-<!-- Add mesh convergence screenshots; one per mesh density -->
-| 20 mm | 15 mm | 10 mm (selected) | 7 mm | 5 mm |
-|:---:|:---:|:---:|:---:|:---:|
-| ![](images/mesh/mesh_20mm.png) | ![](images/mesh/mesh_15mm.png) | ![](images/mesh/mesh_10mm.png) | ![](images/mesh/mesh_7mm.png) | ![](images/mesh/mesh_5mm.png) |
-| *λ*₁ = 261.73 | 258.22 | 255.52 | 254.32 | 253.63 |
-
-The first eigenvalue stabilised below 1 % change per refinement step from 10 mm downward — 10 mm was selected for production runs.
+| Spacing \(b\) | Number of stiffeners |
+|---|---|
+| 100 mm | 5 |
+| 150 mm | 3 |
+| 200 mm | 2 |
 
 ---
 
-## 27-panel results gallery
+# CAD geometry
 
-Linear buckling mode shape for each of the 27 configurations. Panel 13 and Panel 22 are highlighted as the two design candidates.
-
-<!-- Drop all 27 panel mode-shape screenshots into images/modes/ named panel_01.png ... panel_27.png -->
-
-<details>
-<summary><b>Show all 27 panels (click to expand)</b></summary>
-
-| Panel | *t* (mm) | *h* (mm) | *b* (mm) | *P*ᶜʳ (kN) | Mode shape |
-|:---:|:---:|:---:|:---:|---:|:---:|
-| 1 | 2 | 25 | 100 | 218.9 | ![](images/modes/panel_01.png) |
-| 2 | 2 | 25 | 150 | 86.2 | ![](images/modes/panel_02.png) |
-| 3 | 2 | 25 | 200 | 44.8 | ![](images/modes/panel_03.png) |
-| 4 | 2 | 35 | 100 | 227.0 | ![](images/modes/panel_04.png) |
-| 5 | 2 | 35 | 150 | 88.2 | ![](images/modes/panel_05.png) |
-| 6 | 2 | 35 | 200 | 45.6 | ![](images/modes/panel_06.png) |
-| 7 | 2 | 45 | 100 | 235.4 | ![](images/modes/panel_07.png) |
-| 8 | 2 | 45 | 150 | 90.2 | ![](images/modes/panel_08.png) |
-| 9 | 2 | 45 | 200 | 46.3 | ![](images/modes/panel_09.png) |
-| 10 | 3 | 25 | 100 | 341.4 | ![](images/modes/panel_10.png) |
-| 11 | 3 | 25 | 150 | 243.0 | ![](images/modes/panel_11.png) |
-| 12 | 3 | 25 | 200 | 131.2 | ![](images/modes/panel_12.png) |
-| **13** | **3** | **35** | **100** | **644.8** | ![](images/modes/panel_13.png) |
-| 14 | 3 | 35 | 150 | 255.5 | ![](images/modes/panel_14.png) |
-| 15 | 3 | 35 | 200 | 132.4 | ![](images/modes/panel_15.png) |
-| 16 | 3 | 45 | 100 | 603.7 | ![](images/modes/panel_16.png) |
-| 17 | 3 | 45 | 150 | 259.3 | ![](images/modes/panel_17.png) |
-| 18 | 3 | 45 | 200 | 133.3 | ![](images/modes/panel_18.png) |
-| 19 | 4 | 25 | 100 | 396.8 | ![](images/modes/panel_19.png) |
-| 20 | 4 | 25 | 150 | 286.9 | ![](images/modes/panel_20.png) |
-| 21 | 4 | 25 | 200 | 224.4 | ![](images/modes/panel_21.png) |
-| **22** | **4** | **35** | **100** | **745.4** | ![](images/modes/panel_22.png) |
-| 23 | 4 | 35 | 150 | 528.5 | ![](images/modes/panel_23.png) |
-| 24 | 4 | 35 | 200 | 284.8 | ![](images/modes/panel_24.png) |
-| 25 | 4 | 45 | 100 | 655.9 | ![](images/modes/panel_25.png) |
-| 26 | 4 | 45 | 150 | 540.1 | ![](images/modes/panel_26.png) |
-| 27 | 4 | 45 | 200 | 286.6 | ![](images/modes/panel_27.png) |
-
-</details>
+![CAD Geometry](images/cad_geometry.png)
 
 ---
 
-## Response-surface models (RSM + ANOVA)
+# Material properties
 
-Three full-quadratic response surfaces fitted by ordinary least squares against the 27 simulation points, one per response (*P*ᶜʳ, Mass, *P*ᶜʳ/Mass). Coded factors *T* = (*t* − 3)/1, *H* = (*h* − 35)/10, *B* = (*b* − 150)/50.
+| Property | Value |
+|---|---|
+| Young's modulus | 68.9 GPa |
+| Poisson ratio | 0.33 |
+| Density | 2700 kg/m³ |
+| Yield strength | 276 MPa |
 
-### Model adequacy
+---
 
-<!-- These three PNGs come straight from MATLAB's adequacy_*.png outputs -->
-![Adequacy — Pcr](images/rsm/adequacy_Pcr.png)
-![Adequacy — Mass](images/rsm/adequacy_Mass.png)
-![Adequacy — Pcr/Mass ratio](images/rsm/adequacy_Ratio.png)
+# Finite Element Analysis (FEA)
 
-### Response surfaces
+Linear eigenvalue buckling simulations were performed in ANSYS Mechanical 2024 R1.
 
-<!-- These come from MATLAB's surface_*.png outputs -->
-![Pcr surfaces](images/rsm/surface_Pcr.png)
-![Pcr/Mass surfaces](images/rsm/surface_Ratio.png)
+## Analysis features
 
-### Fitted polynomial (Pcr, coded factors)
+- Shell element formulation
+- Parametric geometry workflow
+- Linear eigenvalue buckling extraction
+- Uniform axial compressive loading
+- Automated DOE workflow
 
+---
+
+# Boundary conditions
+
+- One longitudinal edge fixed
+- Axial compressive load applied on opposite edge
+- Shell body formulation used
+- First buckling eigenmode extracted
+
+---
+
+# Meshing strategy
+
+The stiffened panel was discretised using shell elements.
+
+## Mesh characteristics
+
+| Feature | Description |
+|---|---|
+| Element type | Shell elements |
+| Mesh method | Patch conforming |
+| Refinement regions | Stiffener intersections |
+| Solver | Sparse direct solver |
+
+---
+
+# Global mesh
+
+![Global Mesh](images/global_mesh.png)
+
+---
+
+# Local mesh refinement
+
+![Local Mesh](images/local_mesh.png)
+
+---
+
+# Mesh convergence study
+
+A mesh convergence study was performed to ensure mesh-independent buckling predictions.
+
+The element size was progressively refined while monitoring:
+
+- Buckling eigenvalue
+- Critical buckling load (\(P_{cr}\))
+- Percentage variation between refinements
+
+---
+
+# Mesh convergence results
+
+| Element Size (mm) | Eigenvalue \(\lambda_1\) | \(P_{cr}\) (kN) | % Change | Observation |
+|---|---|---|---|---|
+| 20 | 261.73 | 261.73 | Baseline | Initial mesh |
+| 15 | 258.22 | 258.22 | 1.34% | Refining |
+| 10 | 255.52 | 255.52 | 1.05% | **Selected mesh** |
+| 7 | 254.32 | 254.32 | 0.47% | Converged |
+| 5 | 253.63 | 253.63 | 0.27% | Fully converged |
+
+---
+
+# Mesh convergence plot
+
+![Mesh Convergence](images/mesh_convergence.png)
+
+---
+
+# Mesh selection
+
+The 10 mm element size was selected for all DOE simulations because:
+
+- The solution was close to convergence
+- Change in \(P_{cr}\) reduced to approximately 1%
+- Computational cost remained reasonable
+- Numerical stability was maintained
+
+Further refinement below 10 mm produced only marginal improvement while significantly increasing computational expense.
+
+---
+
+# Buckling mode shape
+
+![Buckling Mode](images/buckling_mode.png)
+
+---
+
+# Design of Experiments (DOE)
+
+A full-factorial DOE was used.
+
+## DOE structure
+
+| Parameter | Levels |
+|---|---|
+| Thickness \(t\) | 3 |
+| Height \(h\) | 3 |
+| Spacing \(b\) | 3 |
+
+Total simulations:
+
+\[
+3 \times 3 \times 3 = 27 \text{ panel configurations}
+\]
+
+---
+
+# DOE dataset
+
+The project includes a complete dataset containing:
+
+- Panel geometry
+- Structural mass
+- Critical buckling load
+- Strength-to-weight ratio
+
+## Dataset file
+
+```text
+DOE_27_Panels.csv
 ```
-Pcr = 321.1 + 159.3·T + 48.73·H − 152.2·B
-    + 46.05·T·H − 38.14·T·B − 39.34·H·B
-    − 25.39·T² − 59.99·H² + 35.71·B²
-```
-
-R² = 0.923 ·  Adjusted R² = 0.882 ·  RMSE = 70.57 kN ·  overall *p* = 9.5 × 10⁻⁸
-
-Significant terms at α = 0.05: *T*, *H*, *B*, *T·H* (with *H*² borderline at *p* = 0.053).
 
 ---
 
-## Pareto front
+# CSV dataset structure
 
-15 of the 27 configurations are non-dominated under the joint objective of maximising *P*ᶜʳ and minimising mass.
-
-<!-- pareto_front.png from MATLAB -->
-![Pareto front](images/rsm/pareto_front.png)
-
-The Pareto front separates a load-critical knee (Panel 22, top right) from a strength-to-weight knee (Panel 13). A continuous RSM grid search across the bounded design space locates the load-maximising optimum at *t* = 4.00 mm, *h* = 44.33 mm, *b* = 100 mm (predicted *P*ᶜʳ = 754.0 kN, 27 % heavier than Panel 13).
-
----
-
-## Repository layout
-
-```
-.
-├── README.md                              ← this file
-├── thesis/
-│   └── Thesis_v5.docx                     ← final thesis
-├── matlab/
-│   └── Stiffened_Panel_RSM_ANOVA.m        ← RSM + ANOVA + Pareto
-├── results/
-│   ├── RSM_ANOVA_log.txt                  ← full MATLAB console log
-│   └── RSM_dataset_and_fit.csv            ← 27 rows + fitted values
-├── images/
-│   ├── geometry/                          ← CAD screenshots
-│   ├── mesh/                              ← mesh + convergence screenshots
-│   ├── modes/                             ← panel_01.png … panel_27.png
-│   └── rsm/                               ← MATLAB plot outputs
-└── docs/
-    ├── Response_to_expert.docx            ← OLS-derivation Q&A
-    └── README_video.docx                  ← walkthrough video companion
-```
+| Column | Description |
+|---|---|
+| Panel_ID | Panel configuration number |
+| Thickness_mm | Skin thickness |
+| Height_mm | Stiffener height |
+| Spacing_mm | Stiffener spacing |
+| Mass_kg | Structural mass |
+| Pcr_kN | Critical buckling load |
+| Ratio_kN_per_kg | Strength-to-weight ratio |
 
 ---
 
-## Reproducing the analysis
+# DOE table
 
-Requirements: MATLAB R2026a with the Statistics and Machine Learning Toolbox; ANSYS Mechanical 2024 R1 (only needed to regenerate the FE data — the 27 results are embedded in the MATLAB script).
-
-```matlab
->> cd matlab
->> Stiffened_Panel_RSM_ANOVA
-```
-
-Press F5. The script writes all outputs to `RSM_ANOVA_Results/` in the current working directory. A walkthrough video and a written companion (`docs/README_video.docx`) explain each section step by step.
+![DOE Table](images/doe_table.png)
 
 ---
 
-## Author
+# MATLAB workflow
 
-**Mohammad Haris**
+Simulation results from ANSYS were exported to MATLAB R2020a for:
 
+- Polynomial regression
+- Response surface generation
+- ANOVA
+- Model adequacy checking
+- Pareto optimisation
+- Surface and contour plotting
 
 ---
 
+# Response Surface Methodology (RSM)
+
+Second-order polynomial response surfaces were fitted for:
+
+- Mass
+- Critical buckling load
+- Strength-to-weight ratio
+
+## General RSM equation
+
+\[
+Y = \beta_0 + \sum \beta_i x_i + \sum \beta_{ij} x_i x_j + \sum \beta_{ii} x_i^2
+\]
+
+where:
+
+- \(Y\) = predicted response
+- \(x_i\) = design variables
+- \(\beta\) = regression coefficients
+
+---
+
+# Model adequacy — Mass
+
+## Regression quality
+
+| Metric | Value |
+|---|---|
+| \(R^2\) | 1.000 |
+| Residual behaviour | Random |
+| Q-Q plot | Approximately normal |
+
+The mass model shows nearly perfect agreement between predicted and actual values.
+
+![Mass Adequacy](images/adequacy_mass.png)
+
+---
+
+# Model adequacy — Critical buckling load
+
+## Regression quality
+
+| Metric | Value |
+|---|---|
+| \(R^2\) | 0.923 |
+| Residual behaviour | Acceptable |
+| Q-Q plot | Near-normal |
+
+The \(P_{cr}\) model captures the overall buckling trend with good predictive accuracy.
+
+![Pcr Adequacy](images/adequacy_pcr.png)
+
+---
+
+# Model adequacy — Strength-to-weight ratio
+
+## Regression quality
+
+| Metric | Value |
+|---|---|
+| \(R^2\) | 0.890 |
+| Residual behaviour | Acceptable |
+| Q-Q plot | Approximately normal |
+
+The strength-to-weight model demonstrates acceptable predictive capability for optimisation studies.
+
+![Ratio Adequacy](images/adequacy_ratio.png)
+
+---
+
+# ANOVA analysis
+
+ANOVA was used to identify statistically significant design variables affecting structural behaviour.
+
+---
+
+# Significant observations
+
+## Critical buckling load (\(P_{cr}\))
+
+- Thickness strongly increases buckling resistance
+- Reduced stiffener spacing improves stiffness
+- Interaction between thickness and height is significant
+
+## Mass
+
+- Thickness and stiffener spacing dominate structural mass
+- Mass model shows nearly linear behaviour
+
+## Strength-to-weight ratio
+
+- Best ratios occur at moderate thickness with low spacing
+- Excessive thickness increases mass disproportionately
+
+---
+
+# ANOVA plots
+
+## \(P_{cr}\) ANOVA
+
+![Pcr ANOVA](images/anova_pcr.png)
+
+---
+
+## Mass ANOVA
+
+![Mass ANOVA](images/anova_mass.png)
+
+---
+
+## Ratio ANOVA
+
+![Ratio ANOVA](images/anova_ratio.png)
+
+---
+
+# Response surfaces — Critical buckling load
+
+The response surfaces show:
+
+- Increasing thickness significantly improves \(P_{cr}\)
+- Lower stiffener spacing increases stiffness
+- Larger stiffener height improves buckling resistance
+
+![Pcr Response Surface](images/response_surface_pcr.png)
+
+---
+
+# Response surfaces — Strength-to-weight ratio
+
+The strength-to-weight response surfaces indicate:
+
+- Optimum designs occur at moderate mass
+- Smaller spacing improves efficiency
+- Excessive thickness reduces efficiency gains
+
+![Ratio Response Surface](images/response_surface_ratio.png)
+
+---
+
+# Pareto optimisation
+
+Multi-objective optimisation was performed to identify panel configurations balancing:
+
+- Maximum buckling resistance
+- Minimum structural mass
+
+---
+
+# Pareto front
+
+![Pareto Front](images/pareto_front.png)
+
+---
+
+# Best simulated configuration
+
+| Parameter | Value |
+|---|---|
+| Panel | 13 |
+| Thickness \(t\) | 3 mm |
+| Height \(h\) | 35 mm |
+| Spacing \(b\) | 100 mm |
+| Mass | 6.81 kg |
+| \(P_{cr}\) | 644.8 kN |
+| \(P_{cr}/\text{Mass}\) | 94.58 kN/kg |
+
+This configuration produced the best strength-to-weight ratio among all simulated panels.
+
+---
+
+# RSM-predicted optimum
+
+| Parameter | Value |
+|---|---|
+| Thickness \(t\) | 4.00 mm |
+| Height \(h\) | 44.33 mm |
+| Spacing \(b\) | 100 mm |
+| Predicted \(P_{cr}\) | 754.0 kN |
+
+The response surface predicts improved buckling performance near the upper design boundary.
+
+---
+
+# Engineering conclusions
+
+- Thickness is the most influential parameter affecting buckling strength
+- Smaller stiffener spacing significantly improves stiffness
+- Increasing stiffener height improves buckling resistance
+- Excessive thickness increases mass disproportionately
+- RSM successfully predicts structural behaviour with good accuracy
+- Pareto optimisation identifies efficient lightweight configurations
+- Surrogate modelling reduces repeated FEA computational cost
+
+---
+
+# Included project files
+
+| File | Description |
+|---|---|
+| `DOE_27_Panels.csv` | Full 27-panel simulation dataset |
+| `RSM_Model.m` | MATLAB response-surface fitting |
+| `ANOVA_Analysis.m` | Statistical analysis |
+| `Pareto_Optimisation.m` | Multi-objective optimisation |
+| `ANSYS_Project.wbpj` | ANSYS Mechanical project |
+| `README.md` | Project documentation |
+
+---
+
+# Future work
+
+- Nonlinear post-buckling analysis
+- Composite stiffened panels
+- Dynamic loading analysis
+- Fatigue assessment
+- Machine-learning surrogate models
+- Genetic algorithm optimisation
+
+---
+
+# Author
+
+**Mohammad Haris**  
+Mechanical Engineer | FEA & CFD Engineer
+
+GitHub:  
+https://github.com/MohammadHaris13
+
+---
+
+# License
+
+This project is intended for academic and research purposes.
