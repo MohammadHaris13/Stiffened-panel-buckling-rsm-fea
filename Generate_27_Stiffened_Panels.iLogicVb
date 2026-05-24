@@ -1,0 +1,244 @@
+'======================================================================
+' Parametric Stiffened Panel Generator - 27 Configurations
+' Autodesk Inventor Professional 2025  |  iLogic (VB.NET)
+'
+' Thesis: COMPUTATIONALLY OPTIMIZED STIFFENED PANELS UNDER COMPRESSIVE
+'         LOADING - LBA, 3 x 3 x 3 full factorial.
+'
+' No material assigned in Inventor - material is set in ANSYS only.
+'
+' Coordinate system (identical for all 27 parts):
+'   X = panel length  (loaded direction in LBA)
+'   Y = panel width   (transverse)
+'   Z = thickness / out-of-plane
+'   Skin bottom face = z = 0      (constant for all 27 panels)
+'   Skin centered on (0, 0) in XY (constant for all 27 panels)
+'   Edges at x = +/- L/2 and y = +/- W/2 (constant for all 27 panels)
+'======================================================================
+
+Sub Main()
+
+    '================== USER-EDITABLE PARAMETERS =====================
+    Dim L_panel As Double = 1000.0   ' Panel length [mm], loaded direction (X)
+    Dim W_panel As Double = 600.0    ' Panel width  [mm], transverse      (Y)
+
+    ' Stiffener cross-section (constant across all 27 cases)
+    Dim tw  As Double = 2.0          ' Web thickness    [mm]
+    Dim tf  As Double = 3.0          ' Flange thickness [mm]
+    Dim bfl As Double = 25.0         ' Flange width     [mm]
+
+    ' Stiffener type: "T" (centered flange) or "L" (one-sided)
+    Dim stiffType As String = "T"
+
+    ' Output folder
+    Dim outDir As String = Environ("USERPROFILE") & "\Documents\StiffenedPanels_27"
+
+    ' Also export STEP files for ANSYS Workbench import?
+    Dim doExport As Boolean = True
+    '=================================================================
+
+    Dim tArr() As Double = {2.0, 3.0, 4.0}
+    Dim hArr() As Double = {25.0, 35.0, 45.0}
+    Dim bArr() As Double = {100.0, 150.0, 200.0}
+
+    Try : MkDir(outDir) : Catch : End Try
+
+    Dim oApp As Inventor.Application = ThisApplication
+    Dim oTG  As Inventor.TransientGeometry = oApp.TransientGeometry
+
+    Dim manifest As New System.Text.StringBuilder()
+    manifest.AppendLine("Case,t_mm,h_mm,b_mm,N_stiff,IPT,STEP")
+
+    Dim caseNo As Integer = 0
+    For Each tVal As Double In tArr
+        For Each hVal As Double In hArr
+            For Each bVal As Double In bArr
+                caseNo += 1
+                Dim baseName As String = String.Format( _
+                    "Panel_{0:D2}_t{1}_h{2}_b{3}", _
+                    caseNo, CInt(tVal), CInt(hVal), CInt(bVal))
+                Dim iptPath As String = outDir & "\" & baseName & ".ipt"
+                Dim stpPath As String = outDir & "\" & baseName & ".stp"
+
+                Try
+                    Dim nStf As Integer = BuildOnePanel(oApp, oTG, iptPath, stpPath, _
+                        tVal, hVal, bVal, L_panel, W_panel, tw, tf, bfl, stiffType, doExport)
+                    manifest.AppendLine(String.Format("{0},{1},{2},{3},{4},{5},{6}", _
+                        caseNo, tVal, hVal, bVal, nStf, baseName & ".ipt", _
+                        If(doExport, baseName & ".stp", "-")))
+                Catch ex As System.Exception
+                    manifest.AppendLine(String.Format("{0},{1},{2},{3},ERROR-{4},-,-", _
+                        caseNo, tVal, hVal, bVal, ex.Message.Replace(",", ";")))
+                End Try
+            Next
+        Next
+    Next
+
+    Try
+        Dim csvPath As String = outDir & "\_DesignMatrix.csv"
+        Dim fNum As Integer = FreeFile()
+        FileOpen(fNum, csvPath, OpenMode.Output)
+        Print(fNum, manifest.ToString())
+        FileClose(fNum)
+    Catch
+    End Try
+
+    MessageBox.Show( _
+        "Generated " & caseNo & " stiffened-panel configurations." & vbCrLf & vbCrLf & _
+        "Output folder:" & vbCrLf & outDir & vbCrLf & vbCrLf & _
+        "Material: NOT set in CAD - assign in ANSYS.", _
+        "Stiffened Panel Generator", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+End Sub
+
+
+'======================================================================
+' BuildOnePanel
+'======================================================================
+Function BuildOnePanel( _
+    oApp As Inventor.Application, _
+    oTG As Inventor.TransientGeometry, _
+    iptPath As String, stpPath As String, _
+    t As Double, h As Double, b As Double, _
+    Lp As Double, Wp As Double, _
+    tw As Double, tf As Double, bfl As Double, _
+    stiffType As String, _
+    doExport As Boolean) As Integer
+
+    Dim oDoc As PartDocument = oApp.Documents.Add( _
+        DocumentTypeEnum.kPartDocumentObject, _
+        oApp.FileManager.GetTemplateFile( _
+            DocumentTypeEnum.kPartDocumentObject), True)
+    oDoc.UnitsOfMeasure.LengthUnits = UnitsTypeEnum.kMillimeterLengthUnits
+    Dim oDef As PartComponentDefinition = oDoc.ComponentDefinition
+
+    Dim oXY As WorkPlane = oDef.WorkPlanes.Item(3)
+
+    Dim cmFac As Double = 0.1
+    Dim hL As Double = (Lp / 2) * cmFac
+    Dim hW As Double = (Wp / 2) * cmFac
+
+    ' --- 1) SKIN: rectangle on XY, extrude +Z by t (skin bottom at z=0) ---
+    Dim oSk1 As PlanarSketch = oDef.Sketches.Add(oXY)
+    Call oSk1.SketchLines.AddAsTwoPointRectangle( _
+        oTG.CreatePoint2d(-hL, -hW), oTG.CreatePoint2d(hL, hW))
+
+    Dim ext1 As ExtrudeFeature = oDef.Features.ExtrudeFeatures.AddByDistanceExtent( _
+        oSk1.Profiles.AddForSolid(), t * cmFac, _
+        PartFeatureExtentDirectionEnum.kPositiveExtentDirection, _
+        PartFeatureOperationEnum.kJoinOperation)
+    ext1.Name = "Skin"
+
+    ' --- 2) Stiffener centerlines (centered & symmetric in W) ---
+    Dim numBays As Integer = CInt(Math.Round(Wp / b))
+    Dim nStf    As Integer = numBays - 1
+
+    Dim yPos(nStf - 1) As Double
+    Dim yStart As Double = -(nStf - 1) * b / 2
+    For i As Integer = 0 To nStf - 1
+        yPos(i) = yStart + i * b
+    Next
+
+    ' --- 3) WEBS: extrude +Z by (h - tf), merging onto skin top ---
+    Dim oWPweb As WorkPlane = oDef.WorkPlanes.AddByPlaneAndOffset(oXY, t * cmFac, False)
+    oWPweb.Visible = False
+    oWPweb.Name = "TopOfSkin"
+
+    Dim oSkWeb As PlanarSketch = oDef.Sketches.Add(oWPweb)
+    For i As Integer = 0 To nStf - 1
+        Dim yc As Double = yPos(i)
+        Call oSkWeb.SketchLines.AddAsTwoPointRectangle( _
+            oTG.CreatePoint2d(-hL, (yc - tw / 2) * cmFac), _
+            oTG.CreatePoint2d( hL, (yc + tw / 2) * cmFac))
+    Next
+
+    Dim extWeb As ExtrudeFeature = oDef.Features.ExtrudeFeatures.AddByDistanceExtent( _
+        oSkWeb.Profiles.AddForSolid(), (h - tf) * cmFac, _
+        PartFeatureExtentDirectionEnum.kPositiveExtentDirection, _
+        PartFeatureOperationEnum.kJoinOperation)
+    extWeb.Name = "StiffenerWebs"
+
+    ' --- 4) FLANGES: extrude +Z by tf, merging onto web tops ---
+    Dim oWPfl As WorkPlane = oDef.WorkPlanes.AddByPlaneAndOffset( _
+        oXY, (t + h - tf) * cmFac, False)
+    oWPfl.Visible = False
+    oWPfl.Name = "TopOfWeb"
+
+    Dim oSkFl As PlanarSketch = oDef.Sketches.Add(oWPfl)
+    For i As Integer = 0 To nStf - 1
+        Dim yc As Double = yPos(i)
+        Dim y1mm As Double, y2mm As Double
+        If stiffType = "L" Then
+            y1mm = yc - tw / 2
+            y2mm = yc - tw / 2 + bfl
+        Else
+            y1mm = yc - bfl / 2
+            y2mm = yc + bfl / 2
+        End If
+        Call oSkFl.SketchLines.AddAsTwoPointRectangle( _
+            oTG.CreatePoint2d(-hL, y1mm * cmFac), _
+            oTG.CreatePoint2d( hL, y2mm * cmFac))
+    Next
+
+    Dim extFl As ExtrudeFeature = oDef.Features.ExtrudeFeatures.AddByDistanceExtent( _
+        oSkFl.Profiles.AddForSolid(), tf * cmFac, _
+        PartFeatureExtentDirectionEnum.kPositiveExtentDirection, _
+        PartFeatureOperationEnum.kJoinOperation)
+    extFl.Name = "StiffenerFlanges"
+
+    ' --- 5) Geometric iProperties only (NO material) ---
+    Try
+        Dim oPS As Inventor.PropertySet = _
+            oDoc.PropertySets.Item("Inventor User Defined Properties")
+        oPS.Add(t,         "SkinThickness_mm")
+        oPS.Add(h,         "StiffenerHeight_mm")
+        oPS.Add(b,         "StiffenerSpacing_mm")
+        oPS.Add(Lp,        "PanelLength_mm")
+        oPS.Add(Wp,        "PanelWidth_mm")
+        oPS.Add(tw,        "WebThickness_mm")
+        oPS.Add(tf,        "FlangeThickness_mm")
+        oPS.Add(bfl,       "FlangeWidth_mm")
+        oPS.Add(nStf,      "NumStiffeners")
+        oPS.Add(stiffType, "StiffenerType")
+    Catch
+    End Try
+
+    ' --- 6) Save IPT and optionally export STEP ---
+    Try : Kill(iptPath) : Catch : End Try
+    oDoc.SaveAs(iptPath, False)
+
+    If doExport Then
+        Try : Kill(stpPath) : Catch : End Try
+        Try
+            Call WriteSTEPFile(oApp, oDoc, stpPath)
+        Catch
+        End Try
+    End If
+
+    oDoc.Close(True)
+    Return nStf
+End Function
+
+
+'======================================================================
+' WriteSTEPFile - export STEP AP214 for ANSYS Workbench
+'======================================================================
+Sub WriteSTEPFile(oApp As Inventor.Application, oDoc As Document, stpPath As String)
+    Dim stepAddin As TranslatorAddIn = oApp.ApplicationAddIns.ItemById( _
+        "{90AF7F40-0C01-11D5-8E83-0010B541CD80}")
+    If stepAddin Is Nothing Then Exit Sub
+    If Not stepAddin.Activated Then stepAddin.Activate()
+
+    Dim oCtx  As TranslationContext = oApp.TransientObjects.CreateTranslationContext()
+    oCtx.Type = IOMechanismEnum.kFileBrowseIOMechanism
+    Dim oOpts As NameValueMap = oApp.TransientObjects.CreateNameValueMap()
+    Dim oData As DataMedium    = oApp.TransientObjects.CreateDataMedium()
+
+    If stepAddin.HasSaveCopyAsOptions(oDoc, oCtx, oOpts) Then
+        oOpts.Value("ApplicationProtocolType") = 3   ' AP214
+        oOpts.Value("Description") = "Stiffened Panel"
+    End If
+
+    oData.FileName = stpPath
+    Call stepAddin.SaveCopyAs(oDoc, oCtx, oOpts, oData)
+End Sub

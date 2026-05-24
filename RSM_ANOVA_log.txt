@@ -1,0 +1,898 @@
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+{Unrecognized function or variable 'fitlm'.
+
+fitlm requires <a href="matlab:matlab.internal.addons.launchers.showExplorer('ErrorRecovery', 'identifier', 'ST', 'focused', 'fitlm');">Statistics and Machine Learning Toolbox</a>.
+
+Error in <a href="matlab:matlab.lang.internal.introspective.errorDocCallback('Stiffened_Panel_RSM_ANOVA', 'C:\Users\Mohammad Haris\Documents\MATLAB\Stiffened_Panel_RSM_ANOVA.m', 96)" style="font-weight:bold">Stiffened_Panel_RSM_ANOVA</a> (<a href="matlab: opentoline('C:\Users\Mohammad Haris\Documents\MATLAB\Stiffened_Panel_RSM_ANOVA.m',96,0)">line 96</a>)
+mdlPcr   = fitlm(tbl,'quadratic','ResponseVar','Pcr', ...
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+} 
+<a href="matlab: opentoline('C:\Program Files\MATLAB\R2026a\toolbox\matlab\addons\cef\+matlab\+internal\+addons\Explorer.m',106,1)">106 </a>            end
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
+==============================================================
+ STIFFENED PANEL - RSM / ANOVA   (27 runs, 3x3x3 full factorial)
+==============================================================
+ Reference force assumed         : 1000 N
+ P_cr   range :    44.8 -   745.4 kN
+ Mass   range :    3.91 -    8.72 kg
+ P/M    range :    11.2 -    94.6 kN/kg
+
+
+==============================================================
+ RESPONSE: P_cr  (critical buckling load, kN)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>         <strong>F</strong>         <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>_______</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4.5658e+05     1    4.5658e+05     91.676    2.9161e-08
+    <strong>H    </strong>         42745     1         42745     8.5827     0.0093558
+    <strong>B    </strong>    4.1705e+05     1    4.1705e+05     83.738    5.5924e-08
+    <strong>T:H  </strong>         25448     1         25448     5.1097      0.037203
+    <strong>T:B  </strong>         17459     1         17459     3.5055       0.07847
+    <strong>H:B  </strong>         18576     1         18576     3.7298      0.070296
+    <strong>T^2  </strong>        3868.3     1        3868.3    0.77671       0.39044
+    <strong>H^2  </strong>         21596     1         21596     4.3363      0.052726
+    <strong>B^2  </strong>        7649.2     1        7649.2     1.5359       0.23207
+    <strong>Error</strong>         84666    17        4980.4                         
+
+ R-squared            : 0.9227
+ Adjusted R-squared   : 0.8818
+ RMSE                 : 70.57
+ Overall model p-value: 9.5e-08
+ Significant terms (p<0.05): T, H, B, T:H
+
+==============================================================
+ RESPONSE: Mass  (panel mass, kg)
+==============================================================
+               <strong>SumSq</strong>       <strong>DF</strong>      <strong>MeanSq</strong>          <strong>F</strong>           <strong>pValue</strong>  
+             <strong>__________</strong>    <strong>__</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>        47.766     1        47.766    2.7777e+05    2.9346e-37
+    <strong>H    </strong>        0.5832     1        0.5832        3391.5    5.1678e-21
+    <strong>B    </strong>        6.2075     1        6.2075         36099    9.9722e-30
+    <strong>T:H  </strong>    3.0974e-30     1    3.0974e-30    1.8013e-26             1
+    <strong>T:B  </strong>    0.00019683     1    0.00019683        1.1446       0.29963
+    <strong>H:B  </strong>      0.078732     1      0.078732        457.86    9.8957e-14
+    <strong>T^2  </strong>    2.3786e-30     1    2.3786e-30    1.3832e-26             1
+    <strong>H^2  </strong>    1.2622e-29     1    1.2622e-29      7.34e-26             1
+    <strong>B^2  </strong>       0.22991     1       0.22991          1337    1.3269e-17
+    <strong>Error</strong>     0.0029233    17    0.00017196                            
+
+ R-squared            : 0.9999
+ Adjusted R-squared   : 0.9999
+ RMSE                 : 0.01311
+ Overall model p-value: 1.64e-34
+ Significant terms (p<0.05): T, H, B, H:B, B^2
+
+==============================================================
+ RESPONSE: P_cr / Mass  (strength-to-weight, kN/kg)
+==============================================================
+             <strong>SumSq</strong>     <strong>DF</strong>    <strong>MeanSq</strong>       <strong>F</strong>          <strong>pValue</strong>  
+             <strong>______</strong>    <strong>__</strong>    <strong>______</strong>    <strong>________</strong>    <strong>__________</strong>
+
+    <strong>T    </strong>    4108.3     1    4108.3      42.477    5.2663e-06
+    <strong>H    </strong>    509.61     1    509.61       5.269      0.034702
+    <strong>B    </strong>    7262.2     1    7262.2      75.087    1.2098e-07
+    <strong>T:H  </strong>     376.4     1     376.4      3.8917      0.065014
+    <strong>T:B  </strong>    2.1478     1    2.1478    0.022207       0.88329
+    <strong>H:B  </strong>       222     1       222      2.2954       0.14813
+    <strong>T^2  </strong>    324.92     1    324.92      3.3595       0.08439
+    <strong>H^2  </strong>    387.86     1    387.86      4.0102      0.061439
+    <strong>B^2  </strong>    78.878     1    78.878     0.81555        0.3791
+    <strong>Error</strong>    1644.2    17    96.717                          
+
+ R-squared            : 0.8898
+ Adjusted R-squared   : 0.8314
+ RMSE                 : 9.834
+ Overall model p-value: 1.74e-06
+ Significant terms (p<0.05): T, H, B
+
+--- REDUCED MODELS (significant terms only, p < 0.05) ---
+  Pcr    reduced model: R2=0.8364  adjR2=0.8150  terms kept: T, H, B
+  Mass   reduced model: R2=0.9999  adjR2=0.9999  terms kept: T, H, B, B^2, H:B
+  Ratio  reduced model: R2=0.7623  adjR2=0.7425  terms kept: T, B
+
+=== FITTED RSM EQUATIONS (full quadratic, coded factors) ===
+  P_cr = 321.1 +159.3*T +48.73*H -152.2*B +46.05*T*H -38.14*T*B -39.34*H*B -25.39*T^2 -59.99*H^2 +35.71*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Mass = 6.035 +1.629*T +0.18*H -0.5872*B -5.081e-16*T*H -0.00405*T*B -0.081*H*B -6.296e-16*T^2 -1.45e-15*H^2 +0.1958*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+  Ratio = 50.48 +15.11*T +5.321*H -20.09*B +5.601*T*H -0.4231*T*B -4.301*H*B -7.359*T^2 -8.04*H^2 +3.626*B^2
+     (coded: T=(t-3)/1, H=(h-35)/10, B=(b-150)/50)
+
+==============================================================
+ MULTI-OBJECTIVE OPTIMISATION  (maximise P_cr / Mass)
+==============================================================
+
+(a) Best of the 27 simulated panels:
+    Panel 13 : t=3 mm, h=35 mm, b=100 mm
+              P_cr = 644.8 kN, Mass = 6.817 kg, P/M = 94.58 kN/kg
+
+(b) RSM-predicted optimum (fine grid inside design space):
+    t = 4.00 mm, h = 44.33 mm, b = 100.0 mm
+    Predicted P_cr = 754.0 kN, Mass = 8.694 kg, P/M = 89.56 kN/kg
+
+(c) Pareto-optimal panels (max P_cr / min Mass trade-off): 1   2   3   4   5   6   7   8   9  10  11  13  14  17  22
+
+--------------------------------------------------------------
+ All outputs written to:  C:\Users\Mohammad Haris\Documents\MATLAB\RSM_ANOVA_Results
+   RSM_ANOVA_log.txt          - full console log
+   RSM_dataset_and_fit.csv    - data + fitted values
+   adequacy_*.png             - predicted-vs-actual & residuals
+   surface_*.png              - 3-D response surfaces + contours
+   pareto_front.png           - optimisation trade-off plot
+--------------------------------------------------------------
