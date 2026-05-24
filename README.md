@@ -5,7 +5,7 @@ Parametric finite element and response surface optimisation of Aluminium 6061-T6
 The project combines:
 
 - ANSYS Mechanical 2024 R1
-- MATLAB R2020a
+- MATLAB R2026a
 - Design of Experiments (DOE)
 - Response Surface Methodology (RSM)
 - ANOVA
@@ -76,7 +76,9 @@ Three geometric variables were investigated using a \(3^3\) full-factorial DOE.
 
 # CAD geometry
 
-![CAD Geometry](images/cad_geometry.png)
+<img width="1669" height="820" alt="Screenshot 2026-05-15 161712" src="https://github.com/user-attachments/assets/33a63e6e-e92e-4e1f-a4c5-773e44a0cc31" />
+<img width="1600" height="838" alt="Screenshot 2026-05-15 161136" src="https://github.com/user-attachments/assets/416d6d3c-8cff-4e6d-bd0b-304985bdd71e" />
+
 
 ---
 
@@ -131,13 +133,15 @@ The stiffened panel was discretised using shell elements.
 
 # Global mesh
 
-![Global Mesh](images/global_mesh.png)
+<img width="1540" height="823" alt="Screenshot 2026-05-15 161822" src="https://github.com/user-attachments/assets/dbb91eb4-3952-47cc-9247-986bb6e299fb" />
+
 
 ---
 
 # Local mesh refinement
 
-![Local Mesh](images/local_mesh.png)
+<img width="1540" height="649" alt="Screenshot 2026-05-15 161909" src="https://github.com/user-attachments/assets/25793c3e-7678-4c89-9036-6c0127258c37" />
+
 
 ---
 
@@ -167,7 +171,13 @@ The element size was progressively refined while monitoring:
 
 # Mesh convergence plot
 
-![Mesh Convergence](images/mesh_convergence.png)
+<img width="491" height="138" alt="Screenshot 2026-05-14 124445" src="https://github.com/user-attachments/assets/4da390d6-0f46-4326-82ff-95eb797ad097" />
+<img width="1920" height="1080" alt="20mm" src="https://github.com/user-attachments/assets/58432462-57cb-4d1a-9f07-cf90a2ef7752" />
+<img width="1920" height="1080" alt="15mm" src="https://github.com/user-attachments/assets/018b42f9-6b86-4d8c-956d-c7b8656850ea" />
+<img width="1920" height="1080" alt="10mm" src="https://github.com/user-attachments/assets/27a9168e-f425-4485-9680-f329f6065aa2" />
+<img width="1920" height="1080" alt="7mm" src="https://github.com/user-attachments/assets/6f06bbee-267d-4438-92d5-f402640f3ebf" />
+<img width="1920" height="1080" alt="5mm" src="https://github.com/user-attachments/assets/a50f74da-6073-408a-b9fa-971be6ce73e3" />
+
 
 ---
 
@@ -186,7 +196,34 @@ Further refinement below 10 mm produced only marginal improvement while signific
 
 # Buckling mode shape
 
-![Buckling Mode](images/buckling_mode.png)
+<img width="1920" height="1080" alt="27" src="https://github.com/user-attachments/assets/cd0acd7c-f784-4f8a-b260-228e1ab80a19" />
+<img width="1920" height="1080" alt="26" src="https://github.com/user-attachments/assets/0ce5081a-8c6b-4a14-bda9-6a340f31ade6" />
+<img width="1920" height="1080" alt="25" src="https://github.com/user-attachments/assets/c6d02f88-4f59-49a1-b2e9-0ce5b8086cc6" />
+<img width="1920" height="1080" alt="24" src="https://github.com/user-attachments/assets/1a511e56-c2d2-4ead-949c-450ec16aa7ef" />
+<img width="1920" height="1080" alt="23" src="https://github.com/user-attachments/assets/7cd4d815-c957-4350-9bf6-80665c482be5" />
+<img width="1920" height="1080" alt="22" src="https://github.com/user-attachments/assets/301e0436-db6b-4c8c-a2dd-3c455254e1a7" />
+<img width="1920" height="1080" alt="21" src="https://github.com/user-attachments/assets/ddb3340e-cb05-42ba-ad9c-1d0da1d6a083" />
+<img width="1920" height="1080" alt="20" src="https://github.com/user-attachments/assets/78883b2f-7d10-4fed-9128-35015a9566d3" />
+<img width="1920" height="1080" alt="19" src="https://github.com/user-attachments/assets/7c201911-18ae-4581-9828-f00bb8535978" />
+<img width="1920" height="1080" alt="18" src="https://github.com/user-attachments/assets/1799a168-3695-4065-97ad-b7e5811f00b3" />
+<img width="1920" height="1080" alt="17" src="https://github.com/user-attachments/assets/18fae580-08c8-48ca-a21f-6143f5eeb811" />
+<img width="1920" height="1080" alt="16" src="https://github.com/user-attachments/assets/bd56f582-cac6-4443-a5d0-1a8bb3896d4e" />
+<img width="1920" height="1080" alt="15" src="https://github.com/user-attachments/assets/4925740c-a194-4286-99ae-640e591f4206" />
+<img width="1920" height="1080" alt="14" src="https://github.com/user-attachments/assets/7f7dbe46-6d60-4576-a329-dc51c0bc2f18" />
+<img width="1920" height="1080" alt="13" src="https://github.com/user-attachments/assets/f471f076-7ca0-4ed4-bd58-d051bf60a8cb" />
+<img width="1920" height="1080" alt="12" src="https://github.com/user-attachments/assets/f488f9bf-df35-40ce-8300-fcab825c8343" />
+<img width="1920" height="1080" alt="11" src="https://github.com/user-attachments/assets/1d1a0808-5cc1-4a37-aee2-2c18592345e7" />
+<img width="1920" height="1080" alt="10" src="https://github.com/user-attachments/assets/8d69cc0f-3ea4-4834-9dce-647ae2630103" />
+<img width="1920" height="1080" alt="9" src="https://github.com/user-attachments/assets/bf790f93-656d-460a-820a-76bc3fc34568" />
+<img width="1920" height="1080" alt="8" src="https://github.com/user-attachments/assets/370f7fe5-6619-4c29-906c-1fdc9b4ba0da" />
+<img width="1920" height="1080" alt="7" src="https://github.com/user-attachments/assets/160ffd36-6fde-4504-b4de-55158c616462" />
+<img width="1920" height="1080" alt="6" src="https://github.com/user-attachments/assets/b3f629ed-41c3-4146-98ff-6bb4a3b379bc" />
+<img width="1920" height="1080" alt="5" src="https://github.com/user-attachments/assets/b632af67-3cd5-4206-9fed-16b18c23d17f" />
+<img width="1920" height="1080" alt="4" src="https://github.com/user-attachments/assets/d53453ff-215a-4c2b-a7e9-8151b3553a1d" />
+<img width="1920" height="1080" alt="3" src="https://github.com/user-attachments/assets/74155027-f738-4ead-ace0-b671a9094e03" />
+<img width="1920" height="1080" alt="2" src="https://github.com/user-attachments/assets/704a26b1-87d3-4bea-9068-7720cd456d76" />
+<img width="1920" height="1080" alt="1" src="https://github.com/user-attachments/assets/c6891cd1-6e47-4f49-867d-eb895859b644" />
+
 
 ---
 
@@ -205,9 +242,8 @@ A full-factorial DOE was used.
 Total simulations:
 
 \[
-3 \times 3 \times 3 = 27 \text{ panel configurations}
+3^3 = 27 \text{ panel configurations}
 \]
-
 ---
 
 # DOE dataset
@@ -219,11 +255,40 @@ The project includes a complete dataset containing:
 - Critical buckling load
 - Strength-to-weight ratio
 
-## Dataset file
+---
 
-```text
-DOE_27_Panels.csv
-```
+# DOE dataset table
+
+| Panel | t (mm) | h (mm) | b (mm) | Mass (kg) | Pcr (kN) | Pcr/Mass (kN/kg) |
+|---|---|---|---|---|---|---|
+| 1 | 2 | 25 | 100 | 3.92 | 43.76 | 11.16 |
+| 2 | 2 | 25 | 150 | 4.01 | 45.21 | 11.27 |
+| 3 | 2 | 25 | 200 | 4.12 | 46.84 | 11.37 |
+| 4 | 2 | 35 | 100 | 4.28 | 87.54 | 20.45 |
+| 5 | 2 | 35 | 150 | 4.39 | 89.61 | 20.41 |
+| 6 | 2 | 35 | 200 | 4.51 | 91.08 | 20.20 |
+| 7 | 2 | 45 | 100 | 4.92 | 218.34 | 44.38 |
+| 8 | 2 | 45 | 150 | 5.03 | 226.71 | 45.07 |
+| 9 | 2 | 45 | 200 | 5.17 | 236.02 | 45.65 |
+| 10 | 3 | 25 | 100 | 5.42 | 132.26 | 24.40 |
+| 11 | 3 | 25 | 150 | 5.53 | 131.87 | 23.85 |
+| 12 | 3 | 25 | 200 | 5.61 | 130.54 | 23.27 |
+| 13 | 3 | 35 | 100 | 6.81 | 644.80 | 94.58 |
+| 14 | 3 | 35 | 150 | 7.07 | 603.42 | 85.35 |
+| 15 | 3 | 35 | 200 | 7.18 | 529.11 | 73.69 |
+| 16 | 3 | 45 | 100 | 7.30 | 395.82 | 54.22 |
+| 17 | 3 | 45 | 150 | 7.41 | 287.94 | 38.86 |
+| 18 | 3 | 45 | 200 | 7.53 | 224.67 | 29.84 |
+| 19 | 4 | 25 | 100 | 7.12 | 287.14 | 40.33 |
+| 20 | 4 | 25 | 150 | 7.23 | 284.01 | 39.28 |
+| 21 | 4 | 25 | 200 | 7.34 | 286.63 | 39.05 |
+| 22 | 4 | 35 | 100 | 8.16 | 540.33 | 66.22 |
+| 23 | 4 | 35 | 150 | 8.28 | 529.41 | 63.94 |
+| 24 | 4 | 35 | 200 | 8.41 | 507.62 | 60.36 |
+| 25 | 4 | 45 | 100 | 8.56 | 754.00 | 88.08 |
+| 26 | 4 | 45 | 150 | 8.64 | 680.13 | 78.72 |
+| 27 | 4 | 45 | 200 | 8.71 | 655.08 | 75.21 |
+
 
 ---
 
@@ -238,12 +303,6 @@ DOE_27_Panels.csv
 | Mass_kg | Structural mass |
 | Pcr_kN | Critical buckling load |
 | Ratio_kN_per_kg | Strength-to-weight ratio |
-
----
-
-# DOE table
-
-![DOE Table](images/doe_table.png)
 
 ---
 
